@@ -13,7 +13,7 @@ import {
   DialogContentText,
   DialogActions,
 } from '@mui/material';
-import { Country } from '../types';
+import { Country, Party } from '../types';
 import DockedButtonPane from './DockedButtonPane';
 
 // Sample country list
@@ -28,43 +28,68 @@ const countries: Country[] = [
   { code: 'IN', name: 'India' },
   { code: 'MY', name: 'Malaysia' },
   { code: 'KR', name: 'South Korea' },
+  { code: 'MM', name: 'Myanmar' },
 ];
 
 // Sample system data (in a real application, this would come from an API)
 const systemPartyData = {
   shipper: {
-    name: 'ABC Trading Co., Ltd.',
-    address: ['123 Rama IV Rd.', 'Klongtoey', 'Bangkok', '10110'],
-    country: 'TH',
+    name: 'Singapore Global Trading Pte Ltd',
+    address: ['50 Raffles Place', 'Singapore', 'Central Region', '048623'],
+    street: '50 Raffles Place',
+    city: 'Singapore',
+    state: 'Central Region',
+    postalCode: '048623',
+    country: 'SG',
   },
   consignee: {
-    name: 'XYZ Importers Inc.',
-    address: ['456 Market St.', 'Central', 'Hong Kong', ''],
-    country: 'CN',
+    name: 'Myanmar Import Export Co Ltd',
+    address: ['123 Merchant Street', 'Yangon', 'Yangon Region', '11181'],
+    street: '123 Merchant Street',
+    city: 'Yangon',
+    state: 'Yangon Region',
+    postalCode: '11181',
+    country: 'MM',
   },
   notify: {
-    name: 'Notify Party Example',
-    address: ['789 River Rd.', 'District 1', 'Ho Chi Minh City', '70000'],
-    country: 'VN',
+    name: 'Thailand Logistics Solutions Co Ltd',
+    address: ['456 Silom Road', 'Bangkok', 'Bangkok', '10500'],
+    street: '456 Silom Road',
+    city: 'Bangkok',
+    state: 'Bangkok',
+    postalCode: '10500',
+    country: 'TH',
   },
 };
 
 const PartyInfo: React.FC = () => {
   const [partyData, setPartyData] = useState({
     shipper: {
-      name: 'ABC Trading Co., Ltd.',
-      address: ['123 Rama IV Rd.', 'Klongtoey', 'Bangkok', '10110'],
-      country: 'TH',
+      name: 'Singapore Global Trading Pte Ltd',
+      address: ['50 Raffles Place', 'Singapore', 'Central Region', '048623'],
+      street: '50 Raffles Place',
+      city: 'Singapore',
+      state: 'Central Region',
+      postalCode: '048623',
+      country: 'SG',
     },
     consignee: {
-      name: 'XYZ Importers Inc.',
-      address: ['456 Market St.', 'Central', 'Hong Kong', ''],
-      country: 'CN',
+      name: 'Myanmar Import Export Co Ltd',
+      address: ['123 Merchant Street', 'Yangon', 'Yangon Region', '11181'],
+      street: '123 Merchant Street',
+      city: 'Yangon',
+      state: 'Yangon Region',
+      postalCode: '11181',
+      country: 'MM',
     },
     notify: {
-      name: 'Notify Party Example',
-      address: ['789 River Rd.', 'District 1', 'Ho Chi Minh City', '70000'],
-      country: 'VN',
+      name: 'Thailand Logistics Solutions Co Ltd',
+      address: ['456 Silom Road', 'Bangkok', 'Bangkok', '10500'],
+      street: '456 Silom Road',
+      city: 'Bangkok',
+      state: 'Bangkok',
+      postalCode: '10500',
+      country: 'TH',
     },
   });
   const [openConfirmDialog, setOpenConfirmDialog] = useState(false);
@@ -124,6 +149,10 @@ const PartyInfo: React.FC = () => {
             {systemPartyData[party].address[1]}<br />
             {systemPartyData[party].address[2]}<br />
             {systemPartyData[party].address[3]}<br />
+            Street: {systemPartyData[party].street}<br />
+            City: {systemPartyData[party].city}<br />
+            State: {systemPartyData[party].state}<br />
+            Postal Code: {systemPartyData[party].postalCode}<br />
             {countries.find(c => c.code === systemPartyData[party].country)?.name}
           </Paper>
           
@@ -185,6 +214,78 @@ const PartyInfo: React.FC = () => {
                     </Grid>
                   </Grid>
                 ))}
+              </Grid>
+            </Grid>
+
+            {/* Street */}
+            <Grid item xs={12}>
+              <Grid container spacing={1} alignItems="center">
+                <Grid item xs={3}>
+                  <Typography>Street:</Typography>
+                </Grid>
+                <Grid item xs={9}>
+                  <TextField
+                    required
+                    fullWidth
+                    value={partyData[party].street}
+                    onChange={(e) => handlePartyChange(party, 'street', e.target.value)}
+                    size="small"
+                  />
+                </Grid>
+              </Grid>
+            </Grid>
+
+            {/* City */}
+            <Grid item xs={12}>
+              <Grid container spacing={1} alignItems="center">
+                <Grid item xs={3}>
+                  <Typography>City:</Typography>
+                </Grid>
+                <Grid item xs={9}>
+                  <TextField
+                    required
+                    fullWidth
+                    value={partyData[party].city}
+                    onChange={(e) => handlePartyChange(party, 'city', e.target.value)}
+                    size="small"
+                  />
+                </Grid>
+              </Grid>
+            </Grid>
+
+            {/* State */}
+            <Grid item xs={12}>
+              <Grid container spacing={1} alignItems="center">
+                <Grid item xs={3}>
+                  <Typography>State:</Typography>
+                </Grid>
+                <Grid item xs={9}>
+                  <TextField
+                    required
+                    fullWidth
+                    value={partyData[party].state}
+                    onChange={(e) => handlePartyChange(party, 'state', e.target.value)}
+                    size="small"
+                  />
+                </Grid>
+              </Grid>
+            </Grid>
+
+            {/* Postal Code */}
+            <Grid item xs={12}>
+              <Grid container spacing={1} alignItems="center">
+                <Grid item xs={3}>
+                  <Typography>Postal Code:</Typography>
+                </Grid>
+                <Grid item xs={9}>
+                  <TextField
+                    required
+                    fullWidth
+                    value={partyData[party].postalCode}
+                    onChange={(e) => handlePartyChange(party, 'postalCode', e.target.value)}
+                    size="small"
+                  />
+                </Grid>
               </Grid>
             </Grid>
 

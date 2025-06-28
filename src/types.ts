@@ -27,4 +27,14 @@ export interface CargoMovement {
 export interface Country {
   code: string;
   name: string;
+}
+
+export interface Party {
+  name: string;
+  address: string[];
+  street: string;
+  city: string;
+  state: string;
+  postalCode: string;
+  country: string;
 } 
