@@ -1,8 +1,8 @@
 {
   "files": {
-    "main.js": "/your-repo-name/static/js/main.67fb63ae.js",
-    "index.html": "/your-repo-name/index.html",
-    "main.67fb63ae.js.map": "/your-repo-name/static/js/main.67fb63ae.js.map"
+    "main.js": "/edit-bl-details/static/js/main.67fb63ae.js",
+    "index.html": "/edit-bl-details/index.html",
+    "main.67fb63ae.js.map": "/edit-bl-details/static/js/main.67fb63ae.js.map"
   },
   "entrypoints": [
     "static/js/main.67fb63ae.js"
